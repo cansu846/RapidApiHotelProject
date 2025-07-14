@@ -1,0 +1,81 @@
+﻿@using RapidApiHotelProject.Dtos
+@model VisitHotelDetailDto
+@{
+    ViewData["Title"] = "VisitHotelDetail";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<section class="room-details-section spad">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-lg-8">
+                <div class="room-details-item">
+                    <img src="/sona-master/img/room/room-details.jpg" alt="">
+                    <h2 class="hotel-name">@Model.data.hotel_name</h2>
+                    <p class="hotel-address">@Model.data.address, @Model.data.city_trans, @Model.data.country_trans</p>
+                    <p class="hotel-type">Type: @Model.data.accommodation_type_name</p>
+
+                    <div class="info-box">
+                        <strong>Check-in:</strong> @Model.data.arrival_date <br />
+                        <strong>Check-out:</strong> @Model.data.departure_date <br />
+                        <strong>Available Rooms:</strong> @Model.data.available_rooms <br />
+                        <strong>Max Rooms Per Reservation:</strong> @Model.data.max_rooms_in_reservation <br />
+                        <strong>Distance to City Center:</strong> @Model.data.distance_to_cc km
+                    </div>
+
+                    <div class="info-box mt-3">
+                        <strong>Breakfast Included:</strong> @(Model.data.hotel_include_breakfast == 1 ? "Yes" : "No") <br />
+                        <strong>Family Friendly:</strong> @(Model.data.is_family_friendly == 1 ? "Yes" : "No") <br />
+                        <strong>Review Count:</strong> @Model.data.review_nr
+                    </div>
+
+                    <div class="highlight mt-3">
+                        <h5>Highlights</h5>
+                        <ul>
+                            @foreach (var item in Model.data.property_highlight_strip)
+                            {
+                                <li>@item.name</li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="mt-3">
+                        <a href="@Model.data.url" target="_blank" class="btn btn-outline-primary">View on Booking.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="room-booking">
+                    <h3>Your Reservation</h3>
+                    <form action="#">
+                        <div class="check-date">
+                            <label for="date-in">Check In:</label>
+                            <input type="text" class="date-input" id="date-in">
+                            <i class="icon_calendar"></i>
+                        </div>
+                        <div class="check-date">
+                            <label for="date-out">Check Out:</label>
+                            <input type="text" class="date-input" id="date-out">
+                            <i class="icon_calendar"></i>
+                        </div>
+                        <div class="select-option">
+                            <label for="guest">Guests:</label>
+                            <select id="guest">
+                                <option value="">3 Adults</option>
+                            </select>
+                        </div>
+                        <div class="select-option">
+                            <label for="room">Room:</label>
+                            <select id="room">
+                                <option value="">1 Room</option>
+                            </select>
+                        </div>
+                        <button type="submit">Check Availability</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+</section>

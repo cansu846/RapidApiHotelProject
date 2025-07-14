@@ -1,0 +1,99 @@
+﻿@using RapidApiHotelProject.Dtos
+@model HotelDetailDto
+
+
+@{
+    Layout = "/Views/UILayout/Index.cshtml";
+}
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.data.hotels)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="@item.property.photoUrls[0]" alt="">
+                        <div class="ri-text">
+
+                            <h4>@item.property.name</h4>
+                            <h3>@item.property.priceBreakdown.grossPrice.value @item.property.priceBreakdown.grossPrice.currency<span>/Pernight</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="">Review Count:</td>
+                                        <td>@item.property.reviewCount</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Quality Class:</td>
+                                        <td>@item.property.qualityClass</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Capacity:</td>
+                                        <td>Max persion 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Check-in Date:</td>
+                                        <td>@item.property.checkinDate @item.property.checkin.fromTime - @item.property.checkin.untilTime</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Check-Out Date:</td>
+                                        <td>@item.property.checkoutDate @item.property.checkout.fromTime - @item.property.checkout.untilTime</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>King Beds</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Television, Bathroom,...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="/Booking/VisitHotelDetail/@item.hotel_id?arrival=@item.property.checkinDate&departure=@item.property.checkoutDate" class="primary-btn">More Details</a>
+
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            <div class="col-lg-12">
+                <div class="room-pagination">
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@* <div class="container">
+    <h2>@Model.data.hotel_name</h2>
+    <p><strong>Address:</strong> @Model.data.address</p>
+    <p><strong>City:</strong> @Model.data.city</p>
+    <p><strong>Country:</strong> @Model.data.country_trans</p>
+    <p><strong>Check-in Date:</strong> @Model.data.arrival_date</p>
+    <p><strong>Check-out Date:</strong> @Model.data.departure_date</p>
+    <p><strong>Latitude:</strong> @Model.data.latitude</p>
+    <p><strong>Longitude:</strong> @Model.data.longitude</p>
+
+    @if (Model.data.rooms?._19160501?.photos != null)
+    {
+        <h4>Room Photos</h4>
+        <div class="row">
+            @foreach (var photo in Model.data.rooms._19160501.photos)
+            {
+                <div class="col-md-4 mb-3">
+                    <img src="@photo.url_max750" class="img-fluid" />
+                </div>
+            }
+        </div>
+    }
+
+    <p><strong>Rating:</strong> @Model.data?.rawData.reviewScore / 10</p>
+    <p><strong>Price:</strong> @Model.data?.product_price_breakdown.gross_amount.amount_rounded @Model.data?.currency_code</p>
+</div>
+ *@
