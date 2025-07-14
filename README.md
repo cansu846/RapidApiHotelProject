@@ -19,7 +19,7 @@ Bu proje, [RapidAPI](https://rapidapi.com) üzerinden sağlanan Booking.com API�
 - Newtonsoft.Json
 - Bootstrap 4 / Custom CSS
 - RapidAPI Booking.com API
-- 
+
 ---
 
 ## 📷 Ekran Görüntüleri
